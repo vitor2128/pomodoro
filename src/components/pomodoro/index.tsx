@@ -7,8 +7,8 @@ import { Timer } from "../timer";
 import { useInterval } from "../../hooks/useInterval";
 import { secondsToTime } from "../../utils/secondsToTime";
 
-import bellStart from "../../assets/sounds/start.mp3";
-import bellStop from "../../assets/sounds/finish.mp3";
+import bellStart from "../../sounds/start.mp3";
+import bellStop from "../../sounds/finish.mp3";
 
 
 interface IPomodoro {
@@ -102,10 +102,22 @@ export const PomodoroTimer:React.FC<IPomodoro> = ({
       <Timer mainTimer={mainTime} />
 
       <div className="controls">
-        <Button
+        {/* <Button
+          text={working ? 'Zerar' : 'Trabalhar'}
+          onClick={() => handleWork()}
+        /> */}
+        {timeCounting && (
+          <Button
           text={working ? 'Zerar' : 'Trabalhar'}
           onClick={() => handleWork()}
         />
+        )}
+        {!timeCounting && (
+          <Button
+          text={working ? 'Trabalhar' : 'Zerar'}
+          onClick={() => setTimeCounting(!timeCounting)}
+        />
+        )}
 
         <Button
           text={resting ? 'Zerar' : 'Descanso'}
